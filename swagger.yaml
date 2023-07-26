@@ -1,0 +1,264 @@
+openapi: 3.0.0
+info:
+  title: API de FINDERPYMES
+  version: 1.0.0
+  description: Documentación de la API de FINDERPYMES
+servers:
+  - url: http://localhost:3000
+paths:
+  /plan:
+    get:
+      summary: Obtiene todos los planes
+      description: Obtiene una lista de todos los planes registrados.
+      responses:
+        '200':
+          description: Lista de planes
+    post:
+      summary: Crea un nuevo plan
+      description: Crea un nuevo plan con los datos proporcionados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plan'
+      responses:
+        '201':
+          description: Plan creado exitosamente
+        '400':
+          description: Error en la creación del plan
+  /plan/{id}:
+    get:
+      summary: Obtiene un plan por ID
+      description: Obtiene un plan específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del plan a obtener
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Plan encontrado
+        '404':
+          description: Plan no encontrado
+    put:
+      summary: Actualiza un plan por ID
+      description: Actualiza un plan específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del plan a actualizar
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plan'
+      responses:
+        '200':
+          description: Plan actualizado exitosamente
+        '400':
+          description: Error en la actualización del plan
+        '404':
+          description: Plan no encontrado
+    delete:
+      summary: Elimina un plan por ID
+      description: Elimina un plan específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del plan a eliminar
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Plan eliminado exitosamente
+        '404':
+          description: Plan no encontrado
+  /resource:
+    get:
+      summary: Obtiene todos los recursos
+      description: Obtiene una lista de todos los recursos registrados.
+      responses:
+        '200':
+          description: Lista de recursos
+    post:
+      summary: Crea un nuevo recurso
+      description: Crea un nuevo recurso con los datos proporcionados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+      responses:
+        '201':
+          description: Recurso creado exitosamente
+        '400':
+          description: Error en la creación del recurso
+  /resource/{id}:
+    get:
+      summary: Obtiene un recurso por ID
+      description: Obtiene un recurso específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del recurso a obtener
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Recurso encontrado
+        '404':
+          description: Recurso no encontrado
+    put:
+      summary: Actualiza un recurso por ID
+      description: Actualiza un recurso específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del recurso a actualizar
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+      responses:
+        '200':
+          description: Recurso actualizado exitosamente
+        '400':
+          description: Error en la actualización del recurso
+        '404':
+          description: Recurso no encontrado
+    delete:
+      summary: Elimina un recurso por ID
+      description: Elimina un recurso específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del recurso a eliminar
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Recurso eliminado exitosamente
+        '404':
+          description: Recurso no encontrado
+  /service:
+    get:
+      summary: Obtiene todos los servicios
+      description: Obtiene una lista de todos los servicios registrados.
+      responses:
+        '200':
+          description: Lista de servicios
+    post:
+      summary: Crea un nuevo servicio
+      description: Crea un nuevo servicio con los datos proporcionados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service'
+      responses:
+        '201':
+          description: Servicio creado exitosamente
+        '400':
+          description: Error en la creación del servicio
+  /service/{id}:
+    get:
+      summary: Obtiene un servicio por ID
+      description: Obtiene un servicio específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del servicio a obtener
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Servicio encontrado
+        '404':
+          description: Servicio no encontrado
+    put:
+      summary: Actualiza un servicio por ID
+      description: Actualiza un servicio específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del servicio a actualizar
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service'
+      responses:
+        '200':
+          description: Servicio actualizado exitosamente
+        '400':
+          description: Error en la actualización del servicio
+        '404':
+          description: Servicio no encontrado
+    delete:
+      summary: Elimina un servicio por ID
+      description: Elimina un servicio específico según su ID.
+      parameters:
+        - in: path
+          name: id
+          description: ID del servicio a eliminar
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Servicio eliminado exitosamente
+        '404':
+          description: Servicio no encontrado
+components:
+  schemas:
+    Plan:
+      type: object
+      properties:
+        idPlanFP:
+          type: integer
+        price:
+          type: string
+        duration:
+          type: string
+    Resource:
+      type: object
+      properties:
+        idResource:
+          type: integer
+        type:
+          type: string
+        image:
+          type: string
+    Service:
+      type: object
+      properties:
+        idService:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
